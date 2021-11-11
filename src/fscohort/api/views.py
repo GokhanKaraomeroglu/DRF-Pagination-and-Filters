@@ -3,7 +3,7 @@ from fscohort.models import Student, Course
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import StudentSerializer, CourseSerializer
-from rest_framework import status, generics
+from rest_framework import status, generics, filters
 from rest_framework.views import APIView
 from rest_framework.generics import get_object_or_404, GenericAPIView
 from rest_framework.pagination import PageNumberPagination
