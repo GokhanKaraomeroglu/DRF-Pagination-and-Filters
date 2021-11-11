@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 from rest_framework.generics import get_object_or_404, GenericAPIView
 from rest_framework.pagination import PageNumberPagination
 from .pagination import NewPageNumberPagination, SecondPageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 @api_view(["GET","POST"])
@@ -121,7 +123,10 @@ class StudentListCreateAPIView(generics.ListCreateAPIView):
     queryset = Student.objects.all().order_by('id')
     serializer_class = StudentSerializer
     # pagination_class = NewPageNumberPagination
-    filterset_fields = ['first_name']
+    # filterset_fields = ['first_name', 'last_name']
+    # filter_backends = [DjangoFilterBackend]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['first_name', 'last_name']
 
     
     # def get_queryset(self):
