@@ -6,7 +6,8 @@ from .serializers import StudentSerializer, CourseSerializer
 from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.generics import get_object_or_404, GenericAPIView
-
+from rest_framework.pagination import PageNumberPagination
+from .pagination import NewPageNumberPagination, SecondPageNumberPagination
 
 
 @api_view(["GET","POST"])
@@ -119,6 +120,7 @@ class StudentListCreateAPIView(generics.ListCreateAPIView):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    pagination_class = NewPageNumberPagination
     
     
 class StudentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -132,3 +134,4 @@ class CourseListCreateAPIView(generics.ListCreateAPIView):
     
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    pagination_class = SecondPageNumberPagination
