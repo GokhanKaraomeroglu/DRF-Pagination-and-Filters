@@ -125,6 +125,7 @@ class StudentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    lookup_field = 'id'
     
 
 class CourseListCreateAPIView(generics.ListCreateAPIView):
