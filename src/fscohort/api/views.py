@@ -120,7 +120,14 @@ class StudentListCreateAPIView(generics.ListCreateAPIView):
     
     queryset = Student.objects.all().order_by('id')
     serializer_class = StudentSerializer
-    pagination_class = NewPageNumberPagination
+    # pagination_class = NewPageNumberPagination
+    
+    def get_queryset(self):
+        queryset = Student.objects.all()
+        student_name = self.request.query_params.get('student_name')
+        if student_name is not None:
+            queryset = queryset.filter(first_name=student_name)
+        return queryset
     
     
 class StudentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
