@@ -118,7 +118,7 @@ class StudentDetailAPIView(APIView):
 
 class StudentListCreateAPIView(generics.ListCreateAPIView):
     
-    queryset = Student.objects.all()
+    queryset = Student.objects.all().order_by('id')
     serializer_class = StudentSerializer
     pagination_class = NewPageNumberPagination
     
